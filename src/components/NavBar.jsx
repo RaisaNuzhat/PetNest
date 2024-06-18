@@ -93,14 +93,17 @@ const NavBar = () => {
                                     tabIndex={0}
                                     className='menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52'
                                 >
-
+                                    <li>
+                                        <Link to='/dashboard'>Dashoard</Link>
+                                    </li>
                                     <li className='mt-2'>
                                         <button
                                             onClick={logOut}
-                                            className='bg-gray-200 block text-center text-black'
+                                            className='bg-[#f1b963] block text-center text-black'
                                         >
                                             Logout
                                         </button>
+
                                     </li>
                                 </ul>
                             </div>
