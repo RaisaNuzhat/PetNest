@@ -6,6 +6,7 @@ import Home from '../Pages/Home';
 import DonationCampaigns from '../Pages/DonationCampaigns';
 import PetListing from '../Pages/PetListing';
 import DashBoardLayout from '../layout/DashBoardLayout';
+import AddAPet from '../Pages/Dashboard/User/AddAPet';
 
 
 export const router = createBrowserRouter([
@@ -35,19 +36,26 @@ export const router = createBrowserRouter([
             path: '/register',
             element: <Register/>,
           },
-          {
-            path: '/dashboard',
-            element: <DashBoardLayout/>,
+    ],
+  },
+  {
+    path: '/dashboard',
+    element: <DashBoardLayout/>,
+    children:
+    [
+        {
+
+            path: 'addapet',
+            element: <AddAPet/>,
           },
-         
-     
-       
-       
+        //   {
 
+        //     path: 'myaddedpets',
+        //     element: </>,
+        //   },
+        
 
-    
-    
     ]
-  }
+  },
 
 ]);

@@ -73,7 +73,7 @@ const Register = () => {
         <div className='flex justify-center items-center  mt-16 font-Lato'>
             <Helmet>
                 <title>
-                    PetNest|Login
+                    PetNest|Register
                 </title>
             </Helmet>
             <div className='flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg  lg:max-w-4xl '>

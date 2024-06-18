@@ -2,6 +2,7 @@
 import { Outlet } from 'react-router-dom'
 import Sidebar from '../components/Sidebar'
 
+
 const DashBoardLayout = () => {
   return (
     <div className='relative min-h-screen md:flex'>
@@ -14,6 +15,7 @@ const DashBoardLayout = () => {
           <Outlet />
         </div>
       </div>
+      
     </div>
   )
 }
