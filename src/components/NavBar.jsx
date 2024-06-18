@@ -21,7 +21,7 @@ const NavBar = () => {
     }
     return (
         <div>
-            <div className="navbar bg-[#155263] text-[#f1b963] font-Lato lg:text-xl text-[16px] lg:font-semibold ">
+            <div className="navbar bg-[#155263]  text-[#f1b963] font-Lato lg:text-xl text-[16px] lg:font-semibold ">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -53,7 +53,7 @@ const NavBar = () => {
                 <div className="navbar-center hidden lg:flex lg:justify-around">
                     <ul className="menu menu-horizontal px-1">
                         <li>
-                            <Link to='/'>Home</Link>
+                            <Link to='/' >Home</Link>
                         </li>
                         <li>
                             <Link to='/petlisting'>Pet Listings</Link>
