@@ -1,10 +1,18 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
+import { router } from './Routes/Routes.jsx'
+import { RouterProvider } from 'react-router-dom'
+import { HelmetProvider } from 'react-helmet-async'
 import './index.css'
+import FirebaseProvider from './Firebaseprovider/FirebaseProvider.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
+   <FirebaseProvider>
+      <HelmetProvider>
+      <RouterProvider router={router} />
+      </HelmetProvider>
+    
+    </FirebaseProvider>
   </React.StrictMode>,
 )
