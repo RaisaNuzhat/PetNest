@@ -5,6 +5,8 @@ import Register from '../Pages/Register'
 import Home from '../Pages/Home';
 import DonationCampaigns from '../Pages/DonationCampaigns';
 import PetListing from '../Pages/PetListing';
+import DashBoardLayout from '../layout/DashBoardLayout';
+
 
 export const router = createBrowserRouter([
   {
@@ -33,6 +35,11 @@ export const router = createBrowserRouter([
             path: '/register',
             element: <Register/>,
           },
+          {
+            path: '/dashboard',
+            element: <DashBoardLayout/>,
+          },
+         
      
        
        
