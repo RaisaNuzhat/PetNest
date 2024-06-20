@@ -1,5 +1,5 @@
 import logo from '../assets/logo.png'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { GrLogout } from 'react-icons/gr'
 //import { FcSettings } from 'react-icons/fc'
 import { BsFillHouseAddFill } from 'react-icons/bs'
@@ -12,11 +12,12 @@ import { BsMinecart } from "react-icons/bs";
 import { FaHandHoldingHeart } from "react-icons/fa";
 //import { BsGraphUp } from 'react-icons/bs'
 import { NavLink } from 'react-router-dom'
-import useAuth from '../hooks/useAuth'
+
 import { Link } from 'react-router-dom'
+import { AuthContext } from '../Firebaseprovider/FirebaseProvider'
 
 const Sidebar = () => {
-    const { logOut } = useAuth()
+    const { logOut } = useContext(AuthContext);
     const [isActive, setActive] = useState(false)
 
     // Sidebar Responsive Handler
@@ -88,17 +89,7 @@ const Sidebar = () => {
                                 <span className='mx-4 font-medium'>Add A Pet</span>
                             </NavLink>
                             
-                            <NavLink
-                                to='updatepet/:id'
-                                className={({ isActive }) =>
-                                    `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform hover:text-[#f1b963] ${isActive ? 'bg-[#f1b963]  text-white' : 'text-white'
-                                    }`
-                                }
-                            >
-                                <RiHeartAdd2Fill className='w-5 h-5' />
-
-                                <span className='mx-4 font-medium'>Update Pet Post</span>
-                            </NavLink>
+                            
 
                             {/* Add Room */}
                             <NavLink

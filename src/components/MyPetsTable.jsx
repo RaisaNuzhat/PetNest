@@ -65,7 +65,7 @@ const MyPetsTable = ({item,index}) => {
                     <p className="text-center">{item.category}</p>
                 </td>
                 <td className="px-3 py-2 w-1/4 text-[12px] lg:text-[14px] text-center font-medium dark:text-gray-600">
-                    <Link to={`/updatepet/${item._id}`} className="btn  bg-[#5c715e] text-[16px] lg:font-medium font-normal text-white">Update</Link>
+                    <Link to={`/dashboard/updatepet/${item._id}`} className="btn  bg-[#5c715e] text-[16px] lg:font-medium font-normal text-white">Update</Link>
 
                 </td>
 
