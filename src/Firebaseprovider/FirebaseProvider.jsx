@@ -3,6 +3,7 @@ import { createContext, useEffect, useState } from "react";
 import { createUserWithEmailAndPassword,signInWithEmailAndPassword ,signInWithPopup,signOut,updateProfile} from "firebase/auth";
 import auth from "../firebase/firebase.init";
 import { GoogleAuthProvider } from "firebase/auth";
+import { GithubAuthProvider } from "firebase/auth";
 import { onAuthStateChanged } from "firebase/auth";
 import axios from "axios";
 
@@ -12,7 +13,7 @@ export const AuthContext = createContext(null);
 //social providers
 const googleProvider = new GoogleAuthProvider();
 
-
+const githubProvider = new GithubAuthProvider();
 const FirebaseProvider = ({children}) => {
     const [user,setUser] = useState(null)
     const [loading,setLoading] = useState(true)
@@ -58,7 +59,20 @@ const FirebaseProvider = ({children}) => {
             )
         }
         //github login
-     
+        const signinWithGithub = () =>
+            {
+                setLoading(true)
+                signInWithPopup(auth, githubProvider)
+                .then(
+                    result =>
+                    {
+                        if(result.user)
+                        {
+                            console.log(user)
+                        }
+                    }
+                )
+            }
         const logOut = async () =>
         {
             setUser(null)
@@ -118,7 +132,8 @@ const FirebaseProvider = ({children}) => {
         logOut,
         user,
         loading,
-        updateUserProfile
+        updateUserProfile,
+        signinWithGithub
     }
    
     return (

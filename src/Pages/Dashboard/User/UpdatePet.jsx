@@ -17,7 +17,7 @@ const UpdatePet = () => {
     const { user } = useContext(AuthContext)
     const navigate = useNavigate()
     const updatePet = useLoaderData();
-    const {image,petname,age,category,location, shortnote,description,_id} = updatePet
+    const {image,petname,age,category,location,status, shortnote,description,_id} = updatePet
  
     
   const handleImage = image => {
@@ -38,9 +38,10 @@ const UpdatePet = () => {
     const category = form.category.value;
     const shortnote = form.shortnote.value;
     const date = form.date.value;
+    const status = form.status.value;
     const hostname = form.orgname.value;
     const hostemail = form.orgemail.value;
-    const updatedpet = { image: image_url,petname,age,category,location, shortnote,description, date, hostname, hostemail }
+    const updatedpet = { image: image_url,petname,age,category,location, shortnote,description, date,status, hostname, hostemail }
     console.log(updatedpet)
     try {
         const { data } = await axios.put(`${import.meta.env.VITE_API_URL}/pets/${_id}`, updatedpet)
@@ -82,7 +83,7 @@ const UpdatePet = () => {
                       hidden
                       defaultValue={image}
                     />
-                    <div className='bg-rose-500 text-white border border-gray-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-rose-500'>
+                    <div className='bg-[#f1b963] text-white border border-gray-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-rose-500'>
                       {/* {imageText} */}
                       {imageText.length > 20
                         ? imageText.split('.')[0].slice(0, 15) +
@@ -102,7 +103,7 @@ const UpdatePet = () => {
                     <label className="label">
                         <span className="label-text">Pet Name</span>
                     </label>
-                    <input type="text" defaultValue={petname} name="petname" placeholder="Post Title" className="input input-bordered" required />
+                    <input type="text" defaultValue={petname} name="petname" placeholder="Pet Name" className="input input-bordered" required />
                 </div>
                 <div className="form-control">
                     <label className="label">
@@ -126,7 +127,7 @@ const UpdatePet = () => {
                     <label className="label">
                         <span className="label-text">Pet Location</span>
                     </label>
-                    <input type="text" defaultValue={location} name="location" placeholder="If Any" className="input input-bordered" required />
+                    <input type="text" defaultValue={location} name="location" placeholder="Location" className="input input-bordered" required />
                 </div>
 
                 <div className="form-control my-6">
@@ -162,6 +163,12 @@ const UpdatePet = () => {
                 </div>
                 <div className="form-control">
                     <label className="label">
+                        <span className="label-text">Status:Adopted or Not Adopted</span>
+                    </label>
+                    <input type="text" disabled defaultValue={status} name="status" placeholder="status" className="input input-bordered" required />
+                </div>
+                <div className="form-control">
+                    <label className="label">
                         <span className="label-text">Your Name</span>
                     </label>
                     <input disabled defaultValue={user?.displayName} type="text" name="orgname" placeholder="name" className="input input-bordered" required />
@@ -174,7 +181,7 @@ const UpdatePet = () => {
 
                 </div>
                 <div className="form-control mt-6">
-                    <button className="btn bg-[#5c715e]   text-2xl font-medium text-white">Update Pet</button>
+                    <button className="btn bg-[#f1b963]   text-2xl font-medium text-white">Update Pet</button>
                 </div>
             </form>
         </div>

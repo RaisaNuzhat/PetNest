@@ -23,24 +23,23 @@ const MyAddedPets = () => {
 
             <table className="w-full p-6 text-xs text-center whitespace-nowrap">
                         <colgroup>
-                            <col className="w-8" />
-                            <col />
-                            <col />
-                            <col />
-                            <col />
-                            <col />
-                            <col />
-                            <col className="w-8" />
+                            <col className="w-7" />
+                            <col className="w-7"/>
+                            <col className="w-7"/>
+                            <col className="w-7"/>
+                            <col className="w-7"/>
+                            <col className="w-7"/>
+                            <col className="w-7" />
                         </colgroup>
                          <thead>
                             <tr className="dark:bg-gray-300 text-[#5c715e] font-Lato">
-                            <th className=" px-3 py-2 w-1/6 text-[16px] lg:text-xl font-medium">Serial NO.</th>
-                                <th className=" px-3 py-2 w-1/6 text-[16px] lg:text-xl font-medium">Pet Name</th>
-                                <th className=" px-3 py-2 w-1/6 text-[16px] lg:text-xl font-medium">Category</th>
-                                <th className=" px-3 py-2 w-1/6 text-[16px] lg:text-xl font-medium">Status</th>
-                                <th className=" px-3 py-2 w-1/6 text-[16px] lg:text-xl font-medium">Update</th>
-                                <th className=" px-3 py-2 w-1/6 text-[16px] lg:text-xl font-medium">Delete</th>
-                                <th className=" px-3 py-2 w-1/6 text-[16px] lg:text-xl font-medium">Adopted</th>
+                            <th className=" px-3 py-2 w-1/7 text-[16px] lg:text-xl font-medium">Serial NO.</th>
+                                <th className=" px-3 py-2 w-1/7 text-[16px] lg:text-xl font-medium">Pet Name</th>
+                                <th className=" px-3 py-2 w-1/7 text-[16px] lg:text-xl font-medium">Category</th>
+                                <th className=" px-3 py-2 w-1/7 text-[16px] lg:text-xl font-medium">Status</th>
+                                <th className=" px-3 py-2 w-1/7 text-[16px] lg:text-xl font-medium">Update</th>
+                                <th className=" px-3 py-2 w-1/7 text-[16px] lg:text-xl font-medium">Delete</th>
+                                <th className=" px-3 py-2 w-1/7 text-[16px] lg:text-xl font-medium">Adopted</th>
                                 
                                
                             </tr>
