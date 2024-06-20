@@ -1,153 +1,182 @@
-import { Helmet } from "react-helmet";
-import { useForm } from "react-hook-form";
-import Select from 'react-select';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
-import { useState } from "react";
-import useAuth from "../../../hooks/useAuth";
-const AddAPet = () => {
-    const {
-        register,
-        handleSubmit,
-        setValue,
-        formState: { errors },
-    } = useForm()
-    const [description, setDescription] = useState('');
-    const {user} = useAuth();
-    console.log(user)
-    const categoryOptions = [
-        { value: 'dogs', label: 'Dogs' },
-        { value: 'cats', label: 'Cats' },
-        { value: 'birds', label: 'Birds' },
-        { value: 'smallPets', label: 'Small Pets' },
-    ];
-    const handleCategoryChange = (selectedOption) => {
-        setValue('category', selectedOption);
-    };
-    const handleDescriptionChange = (value) => {
-        setDescription(value);
-        setValue('description', value); // Update the description value
-    };
-    const onSubmit = (data) => {
-        console.log(data)
+import { useContext, useState } from 'react';
+import DatePicker from 'react-datepicker'
+import 'react-datepicker/dist/react-datepicker.css'
+import Swal from 'sweetalert2'
+import { AuthContext } from '../../../Firebaseprovider/FirebaseProvider';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios'
+import { Helmet } from 'react-helmet';
+import { imageUpload } from '../../../api/utils';
+const AddVolunteer = () => {
+    const [category, setCategory] = useState('');
+    const [startDate, setStartDate] = useState(new Date())
+    const [imagePreview, setImagePreview] = useState()
+    const [imageText, setImageText] = useState('Upload Image')
+  
+    const { user } = useContext(AuthContext)
+    const navigate = useNavigate()
+      //   handle image change
+  const handleImage = image => {
+    setImagePreview(URL.createObjectURL(image))
+    setImageText(image.name)
+  }
+    const handleAddPet = async (e) => {
+        e.preventDefault()
+        const form = e.target
+        const petname = form.petname.value
+        const age = form.age.value
+        const image = form.image.files[0]
+        const image_url = await imageUpload(image)
+        const location = form.location.value
+        const description = form.longdescription.value;
+        const category = form.category.value;
+        const shortnote = form.shortnote.value;
+        const date = form.date.value;
+        const hostname = form.orgname.value;
+        const hostemail = form.orgemail.value;
+        const newpet = { image: image_url,petname,age,category,location, shortnote,description, date, hostname, hostemail }
+        console.log(newpet)
+        //send data to server
+        try {
+            
+
+            const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/pets`, newpet)
+            console.log(data)
+            if (data.insertedId) {
+                Swal.fire({
+                    title: 'Yayy!',
+                    text: 'Pet added successfully!',
+                    icon: 'success',
+                    confirmButtonText: 'Okay'
+                })
+                navigate('/')
+            }
+
+        } catch (err) {
+            //toast.success(err.response.data)
+            e.target.reset()
+        }
+
+
 
     }
     return (
         <div>
             <Helmet>
                 <title>
-                    PetNest|Add A Pet
+                    Assistify|Add Volunteer
                 </title>
             </Helmet>
-            <form onSubmit={handleSubmit(onSubmit)} className="card-body">
-            
-                  <div className="form-control">
-                  <label className="label">
-                        <span className="label-text">Pet Image</span>
-                    </label>
-                 
-                    <div className="input input-bordered flex items-center justify-normal">
+            <form onSubmit={handleAddPet} className="card-body">
+            <div className=' p-4 bg-white w-full  m-auto rounded-lg flex justify-between items-center'>
+              <div className='file_upload px-5 py-3 relative border-4 border-dotted border-gray-300 rounded-lg'>
+                <div className='flex flex-col w-max mx-auto text-center'>
+                  <label>
                     <input
-                        {...register("petimage", { required: true })}
-                        type="file"
-                        className="mx-auto"
+                      className='text-sm cursor-pointer w-36 hidden'
+                      type='file'
+                      onChange={e => handleImage(e.target.files[0])}
+                      name='image'
+                      id='image'
+                      accept='image/*'
+                      hidden
                     />
+                    <div className='bg-rose-500 text-white border border-gray-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-rose-500'>
+                      {/* {imageText} */}
+                      {imageText.length > 20
+                        ? imageText.split('.')[0].slice(0, 15) +
+                          '....' +
+                          imageText.split('.')[1]
+                        : imageText}
+                    </div>
+                  </label>
                 </div>
-                    {errors.petimage && <span className="text-red-500">This field is required</span>}
-                </div>
-                <div className="form-control">
+              </div>
+              <div className='h-16 w-16 object-cover overflow-hidden flex items-center'>
+                {imagePreview && <img src={imagePreview} />}
+              </div>
+            </div>
+                <div className="form-control font-Roboto ">
+
                     <label className="label">
                         <span className="label-text">Pet Name</span>
                     </label>
-                    <input  {...register("petName", { required: true })} type="text" placeholder="Name" className="input input-bordered" />
-                    {errors.petName && <span className="text-red-500">This field is required</span>}
-
-                </div>
-                <div className="form-control">
-
-                    <label className="label">
-                        <span className="label-text">Pet Age</span>
-                    </label>
-                    <input {...register("petage", { required: true })} type="email" placeholder="Age" className="input input-bordered" required />
-                    {errors.petage && <span className="text-red-500">This field is required</span>}
-                </div>
-                <div className="form-control mt-4">
-                    <label className="label">
-                        <span className="label-text">Pet Category</span>
-                    </label>
-                    <Select
-                        options={categoryOptions}
-                        onChange={handleCategoryChange}
-                        className="input-bordered"
-                    />
-                    <input
-                        type="hidden"
-                        {...register("category")}
-                    />
+                    <input type="text" name="petname" placeholder="Post Title" className="input input-bordered" required />
                 </div>
                 <div className="form-control">
                     <label className="label">
-                        <span className="label-text">Pet Location</span>
+                        <span className="label-text">Detail Description</span>
                     </label>
-                    <input {...register("petlocation")} type="text" placeholder="Location" className="input input-bordered" />
-                    {errors.petlocation && <span className="text-red-500">This field is required</span>}
+                    <input type="text" name="longdescription" placeholder="Description" className="input input-bordered" required />
                 </div>
                 <div className="form-control">
                     <label className="label">
                         <span className="label-text">Short Note</span>
                     </label>
-                    <input {...register("shortnote")} type="text" placeholder="Note If Any" className="input input-bordered" />
-
+                    <input type="text" name="shortnote" placeholder="If Any" className="input input-bordered" required />
                 </div>
-                <div className="form-control mt-4">
-                <label className="label">
-                    <span className="label-text">Long Description</span>
-                </label>
-                <div className="quill-container">
-                    <ReactQuill
-                        value={description}
-                        onChange={handleDescriptionChange}
-                    />
-                </div>
-                <input
-                    type="hidden"
-                    {...register("description")}
-                    value={description}
-                />
-            </div>
-            <div className="form-control">
+                <div className="form-control">
                     <label className="label">
-                        <span className="label-text">Status</span>
+                        <span className="label-text">Pet Age</span>
                     </label>
-                    <input  {...register("status", { required: true })} type="text" disabled defaultValue={"Not Adopted"} className="input input-bordered" />
-                   
+                    <input type="text" name="age" placeholder="Age in years or months" className="input input-bordered" required />
+                </div>
+                <div className="form-control">
+                    <label className="label">
+                        <span className="label-text">Pet Location</span>
+                    </label>
+                    <input type="text" name="location" placeholder="If Any" className="input input-bordered" required />
+                </div>
 
+                <div className="form-control my-6">
+                    <label className="label">
+                        <span className="label-text">Category</span>
+                    </label>
+                    <select
+                        name="category"
+                        className="input input-bordered"
+                        value={category}
+                        onChange={e => setCategory(e.target.value)}
+                        required
+                    >
+                        <option value="" disabled>Select a category</option>
+                        <option value="cat">Cat</option>
+                        <option value="dog">Dog</option>
+                        <option value="bird">Bird</option>
+                       
+                    </select>
+                </div>
+                <div className="form-control">
+                    <label className="label">
+                        <span className="label-text">Date</span>
+                    </label>
+                    <DatePicker
+                        className='border p-2 rounded-md w-full'
+                        name="date"
+                        selected={startDate}
+                        disabled
+                        onChange={date => setStartDate(date)}
+                    />
                 </div>
                 <div className="form-control">
                     <label className="label">
                         <span className="label-text">Your Name</span>
                     </label>
-                    <input  {...register("hostname", { required: true })} type="text" disabled defaultValue={user?.displayName} className="input input-bordered" />
-                   
-
+                    <input disabled defaultValue={user?.displayName} type="text" name="orgname" placeholder="name" className="input input-bordered" required />
                 </div>
                 <div className="form-control">
                     <label className="label">
                         <span className="label-text">Your Email</span>
                     </label>
-                    <input  {...register("hostemail", { required: true })} type="email" disabled defaultValue={user?.email} className="input input-bordered" />
-                   
+                    <input disabled defaultValue={user?.email} type="email" name="orgemail" placeholder="email" className="input input-bordered" required />
 
                 </div>
-
                 <div className="form-control mt-6">
-                    <button className="btn bg-[#f1b963]  text-white">Submit</button>
+                    <button className="btn bg-[#5c715e]   text-2xl font-medium text-white">Add Pet</button>
                 </div>
-
-
             </form>
         </div>
     );
 };
 
-export default AddAPet;
+export default AddVolunteer;
