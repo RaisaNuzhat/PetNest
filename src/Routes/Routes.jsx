@@ -7,6 +7,9 @@ import DonationCampaigns from '../Pages/DonationCampaigns';
 import PetListing from '../Pages/PetListing';
 import DashBoardLayout from '../layout/DashBoardLayout';
 import AddAPet from '../Pages/Dashboard/User/AddAPet';
+import MyAddedPets from '../Pages/Dashboard/User/MyAddedPets';
+import UpdatePet from '../Pages/Dashboard/User/UpdatePet';
+import CreateDonationCamp from '../Pages/Dashboard/User/CreateDonationCamp';
 
 
 export const router = createBrowserRouter([
@@ -44,17 +47,23 @@ export const router = createBrowserRouter([
     children:
     [
         {
-
+          //index:true,
             path: 'addapet',
             element: <AddAPet/>,
           },
-        //   {
-
-        //     path: 'myaddedpets',
-        //     element: </>,
-        //   },
-        
-
+         {
+            path: 'myaddedpets',
+             element: <MyAddedPets/>,
+           },
+           {
+            path: 'createdonationcamp',
+             element: <CreateDonationCamp/>,
+           },
+           {
+            path: 'updatepet/:id',
+            loader:({params}) => fetch(`${import.meta.env.VITE_API_URL}/pets/${params.id}`),
+             element: <UpdatePet/>,
+           },
     ]
   },
 

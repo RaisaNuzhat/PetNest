@@ -87,6 +87,18 @@ const Sidebar = () => {
 
                                 <span className='mx-4 font-medium'>Add A Pet</span>
                             </NavLink>
+                            
+                            <NavLink
+                                to='updatepet/:id'
+                                className={({ isActive }) =>
+                                    `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform hover:text-[#f1b963] ${isActive ? 'bg-[#f1b963]  text-white' : 'text-white'
+                                    }`
+                                }
+                            >
+                                <RiHeartAdd2Fill className='w-5 h-5' />
+
+                                <span className='mx-4 font-medium'>Update Pet Post</span>
+                            </NavLink>
 
                             {/* Add Room */}
                             <NavLink
@@ -113,7 +125,7 @@ const Sidebar = () => {
                             </NavLink>
                             {/* create donation */}
                             <NavLink
-                                to='createdonation'
+                                to='createdonationcamp'
                                 className={({ isActive }) =>
                                     `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:text-[#f1b963] ${isActive ? 'bg-[#f1b963]  text-white' : 'text-white'
                                     }`
@@ -123,7 +135,7 @@ const Sidebar = () => {
                                 <span className='mx-4 font-medium'>Create Donation Campaign</span>
                             </NavLink>
                             <NavLink
-                                to='mycampaigns'
+                                to='mydonationcamp'
                                 className={({ isActive }) =>
                                     `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:text-[#f1b963] ${isActive ? 'bg-[#f1b963]  text-white' : 'text-white'
                                     }`

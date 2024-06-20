@@ -67,33 +67,50 @@ const FirebaseProvider = ({children}) => {
             signOut(auth)
         }
           //observer
-          useEffect(() => {
-            const unsubscribe = onAuthStateChanged(auth, currentUser => {
-                const userEmail = currentUser?.email || user?.email;
-                const loggedUser = { email: userEmail };
-                setUser(currentUser);
-                console.log('current user', currentUser);
-                setLoading(false);
-                // if user exists then issue a token
-                if (currentUser) {
-                    axios.post('', loggedUser, { withCredentials: true })
-                        .then(res => {
-                            console.log('token response', res.data);
-                        })
+        //   useEffect(() => {
+        //     const unsubscribe = onAuthStateChanged(auth, currentUser => {
+        //         const userEmail = currentUser?.email || user?.email;
+        //         const loggedUser = { email: userEmail };
+        //         setUser(currentUser);
+        //         console.log('current user', currentUser);
+        //         setLoading(false);
+        //         // if user exists then issue a token
+        //         if (currentUser) {
+        //             axios.post('', loggedUser, { withCredentials: true })
+        //                 .then(res => {
+        //                     console.log('token response', res.data);
+        //                 })
+        //         }
+        //         else {
+        //             axios.post('', loggedUser, {
+        //                 withCredentials: true
+        //             })
+        //                 .then(res => {
+        //                     console.log(res.data);
+        //                 })
+        //         }
+        //     });
+        //     return () => {
+        //         return unsubscribe();
+        //     }
+        // }, [])
+               //observer
+    useEffect(
+        () =>
+        {
+            const unsubscribe = onAuthStateChanged(auth, (user) => {
+                if (user) {
+                 setUser(user)
+                 setLoading(false)
+                } else {
+                  // User is signed out
+                  // ...
+                  setLoading(false)
                 }
-                else {
-                    axios.post('', loggedUser, {
-                        withCredentials: true
-                    })
-                        .then(res => {
-                            console.log(res.data);
-                        })
-                }
-            });
-            return () => {
-                return unsubscribe();
-            }
-        }, [])
+              });
+              return () => unsubscribe()
+        }
+        ,[] )
     const allvalues = {
         createUser,
         signinUser,
