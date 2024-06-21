@@ -10,6 +10,7 @@ import AddAPet from '../Pages/Dashboard/User/AddAPet';
 import MyAddedPets from '../Pages/Dashboard/User/MyAddedPets';
 import UpdatePet from '../Pages/Dashboard/User/UpdatePet';
 import CreateDonationCamp from '../Pages/Dashboard/User/CreateDonationCamp';
+import ViewDetails from '../Pages/ViewDetails';
 
 
 export const router = createBrowserRouter([
@@ -24,6 +25,7 @@ export const router = createBrowserRouter([
           },
           {
             path: '/petlisting',
+            loader: () => fetch(`${import.meta.env.VITE_API_URL}/pets`),
             element: <PetListing/>,
           },
           {
@@ -35,6 +37,15 @@ export const router = createBrowserRouter([
             path: '/login',
             element: <Login/>,
           },
+          {
+
+            path: '/viewdetails/:id',
+            loader:({params}) => fetch(`${import.meta.env.VITE_API_URL}/pets/${params.id}`),
+            element: <ViewDetails/>,
+          },
+
+        
+         
           {
             path: '/register',
             element: <Register/>,

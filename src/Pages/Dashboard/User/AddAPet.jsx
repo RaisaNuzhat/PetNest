@@ -50,7 +50,7 @@ const AddVolunteer = () => {
                     icon: 'success',
                     confirmButtonText: 'Okay'
                 })
-                navigate('/')
+                navigate('/dashboard/myaddedpets')
             }
 
         } catch (err) {
