@@ -1,9 +1,17 @@
 
+import { useState } from 'react'
 import { Helmet } from "react-helmet";
+
 import {  useLoaderData } from "react-router-dom";
+import DonateModal from '../components/modal/DonateModal';
 const ViewDonationDetails = () => {
     const viewDonation = useLoaderData();
     const { petname,image, maxamount, description,shortnote} = viewDonation
+    let [isOpen, setIsOpen] = useState(false)
+    const closeModal =()=>
+        {
+            setIsOpen(false)
+        }
     return (
         <div className="mx-auto container font-Lato flex justify-center flex-col">
               <Helmet>
@@ -28,7 +36,8 @@ const ViewDonationDetails = () => {
                 <div className="container mx-auto my-4 flex flex-col justify-center items-center text-center font-Montserrat">
                     
                     <p className="my-3   lg:text-xl text-[16px] sm:mb-12 xl:max-w-3xl dark:text-gray-50">Note: {shortnote}</p>
-
+                    <button onClick={() => setIsOpen(true)} className="btn bg-[#f1b963] text-white text-xl border-none">Donate Now</button>
+                    <DonateModal isOpen={isOpen} closeModal={closeModal}/>
                 </div>
             </section>
         </div>

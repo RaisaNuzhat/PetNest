@@ -73,6 +73,19 @@ const FirebaseProvider = ({children}) => {
                     }
                 )
             }
+              // save user
+  const saveUser = async user => {
+    const currentUser = {
+      email: user?.email,
+      role: 'user',
+      status: 'Verified',
+    }
+    const { data } = await axios.put(
+      `${import.meta.env.VITE_API_URL}/user`,
+      currentUser
+    )
+    return data
+  }
         const logOut = async () =>
         {
             setUser(null)
@@ -115,6 +128,7 @@ const FirebaseProvider = ({children}) => {
             const unsubscribe = onAuthStateChanged(auth, (user) => {
                 if (user) {
                  setUser(user)
+                 saveUser(user)
                  setLoading(false)
                 } else {
                   // User is signed out
