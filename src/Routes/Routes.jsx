@@ -14,6 +14,7 @@ import ViewDetails from '../Pages/ViewDetails';
 import MyDonationCampaigns from '../Pages/Dashboard/User/MyDonationCampaigns';
 import ErrorPage from '../components/ErrorPage';
 import EditDonation from '../Pages/Dashboard/User/EditDonation';
+import ViewDonationDetails from '../Pages/ViewDonationDetails';
 
 
 export const router = createBrowserRouter([
@@ -47,7 +48,11 @@ export const router = createBrowserRouter([
             loader:({params}) => fetch(`${import.meta.env.VITE_API_URL}/pets/${params.id}`),
             element: <ViewDetails/>,
           },
-
+         {
+          path: 'viewdonationdetails/:id',
+          loader:({params}) => fetch(`${import.meta.env.VITE_API_URL}/donations/${params.id}`),
+          element:<ViewDonationDetails/>,
+         },
         
          
           {

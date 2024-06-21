@@ -21,7 +21,7 @@ const DonationCampaigns = () => {
                     PetNest|Donation Campaigns 
                 </title>
             </Helmet>
-             <div className="font-Lato container mx-auto my-10 ">
+             <div className="font-Lato container mx-auto my-10  ">
              <h3 className="my-10 lg:text-5xl sm:text-[18px] text-center font-medium text-[#155263]">All Donation Campaigns</h3>
             <select 
                 onChange={e => {
@@ -36,7 +36,7 @@ const DonationCampaigns = () => {
                 <option value='asce'>Ascending Order</option>
                 <option value='desce'>Descending Order</option>
             </select>
-            <div className=" grid  lg:grid-cols-3 grid-cols-1 gap-8 ">
+            <div className=" grid mx-auto container lg:grid-cols-3 grid-cols-1 gap-8 ">
                 {
                     donations.map( donation=> <DonationCard
                         key={donation._id}
