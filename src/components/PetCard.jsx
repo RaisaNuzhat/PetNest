@@ -15,7 +15,7 @@ const PetCard = ({pet}) => {
                     <p>{age}</p>
                     <p>{date}</p>
                     <div className="card-actions">
-                        <Link to={`/viewdetails/${_id}`} className="btn bg-[#155263] text-white">View Details</Link>
+                        <Link to={`/viewdetails/${_id}`} className="btn bg-[#ff9a3c] text-white">View Details</Link>
                     </div>
                 </div>
             </div>

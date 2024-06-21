@@ -11,13 +11,16 @@ import MyAddedPets from '../Pages/Dashboard/User/MyAddedPets';
 import UpdatePet from '../Pages/Dashboard/User/UpdatePet';
 import CreateDonationCamp from '../Pages/Dashboard/User/CreateDonationCamp';
 import ViewDetails from '../Pages/ViewDetails';
+import MyDonationCampaigns from '../Pages/Dashboard/User/MyDonationCampaigns';
+import ErrorPage from '../components/ErrorPage';
+import EditDonation from '../Pages/Dashboard/User/EditDonation';
 
 
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <MainLayout/>,
-   
+    errorElement: <ErrorPage/>,
     children: [
         {
             path: '/',
@@ -30,6 +33,7 @@ export const router = createBrowserRouter([
           },
           {
             path: '/donationcampaigns',
+            loader: () => fetch(`${import.meta.env.VITE_API_URL}/donations`),
             element: <DonationCampaigns/>,
           },
         {
@@ -71,9 +75,18 @@ export const router = createBrowserRouter([
              element: <CreateDonationCamp/>,
            },
            {
+            path: 'mydonationcamp',
+             element: <MyDonationCampaigns/>,
+           },
+           {
             path: 'updatepet/:id',
             loader:({params}) => fetch(`${import.meta.env.VITE_API_URL}/pets/${params.id}`),
              element: <UpdatePet/>,
+           },
+           {
+            path: 'editdonation/:id',
+            loader:({params}) => fetch(`${import.meta.env.VITE_API_URL}/donations/${params.id}`),
+             element: <EditDonation/>,
            },
     ]
   },

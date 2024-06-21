@@ -65,7 +65,7 @@ const AddVolunteer = () => {
         <div>
             <Helmet>
                 <title>
-                    Assistify|Add Volunteer
+                    PetNest|Add A Pet
                 </title>
             </Helmet>
             <form onSubmit={handleAddPet} className="card-body">

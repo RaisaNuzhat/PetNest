@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import PetCard from "../components/PetCard";
+import { Helmet } from "react-helmet";
 const PetListing = () => {
     const [sort, setSort] = useState('desce')
     const [pets, setPets] = useState([])
@@ -15,6 +16,11 @@ const PetListing = () => {
     }, [sort])
     return (
         <div className="font-Lato container mx-auto my-10 ">
+            <Helmet>
+                <title>
+                    PetNest|Pet Lists 
+                </title>
+            </Helmet>
              <h3 className="my-10 lg:text-5xl sm:text-[18px] text-center font-medium text-[#155263]">All Pets</h3>
             <select 
                 onChange={e => {

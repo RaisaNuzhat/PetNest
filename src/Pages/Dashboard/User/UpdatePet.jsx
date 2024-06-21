@@ -81,7 +81,7 @@ const UpdatePet = () => {
                       id='image'
                       accept='image/*'
                       hidden
-                      defaultValue={image}
+                     
                     />
                     <div className='bg-[#f1b963] text-white border border-gray-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-rose-500'>
                       {/* {imageText} */}
