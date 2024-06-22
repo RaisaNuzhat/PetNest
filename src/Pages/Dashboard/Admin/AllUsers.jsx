@@ -1,18 +1,33 @@
-import {  useEffect, useState } from "react";
+//import {  useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import axios from "axios";
+//import axios from "axios";
 import UserTable from "../../../components/UserTable";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { useQuery } from '@tanstack/react-query'
 const AllUsers = () => {
-    const [items, setItem] = useState([])
-    console.log(items)
-    useEffect(() => {
-        const getData =  async() =>
-            {
-                const {data} = await axios(`${import.meta.env.VITE_API_URL}/users`)
-                setItem(data)
-            }
-        getData()
-    }, [])
+    // const [items, setItem] = useState([])
+    // console.log(items)
+    // useEffect(() => {
+    //     const getData =  async() =>
+    //         {
+    //             const {data} = await axios(`${import.meta.env.VITE_API_URL}/users`)
+    //             setItem(data)
+    //         }
+    //     getData()
+    // }, [])
+     //   Fetch users Data
+    const axiosSecure = useAxiosSecure()
+    const {
+      data: items = [],
+      //isLoading,
+      refetch,
+    } = useQuery({
+      queryKey: ['users'],
+      queryFn: async () => {
+        const { data } = await axiosSecure(`/users`)
+        return data
+      },
+    })
     return (
         <div>
              <div className='container mx-auto px-4 sm:px-8'>
@@ -57,6 +72,7 @@ const AllUsers = () => {
                 items.map(item => <UserTable
                  key={item._id}
                 item ={item}
+                refetch={refetch}
                 >
                 </UserTable>)}
                 </tbody>

@@ -1,9 +1,53 @@
 /* eslint-disable react/prop-types */
-
-const UserTable = ({ item }) => {
+import toast from 'react-hot-toast'
+import { useState } from "react"
+import UpdateUserModal from "./modal/UpdateUserModal"
+import { useMutation } from '@tanstack/react-query'
+import useAxiosSecure from '../hooks/useAxiosSecure'
+import useAuth from '../hooks/useAuth'
+const UserTable = ({ item ,refetch}) => {
    console.log(item)
+   const [isOpen,setIsOPen] = useState(false)
+   const { user: loggedInUser } = useAuth()
+   const axiosSecure=  useAxiosSecure()
+   const { mutateAsync } = useMutation({
+    mutationFn: async role => {
+      const { data } = await axiosSecure.patch(
+        `/users/update/${item?.email}`,
+        role
+      )
+      return data
+    },
+    onSuccess: data => {
+      refetch()
+      console.log(data)
+      toast.success('User role updated successfully!')
+ 
+      setIsOPen(false)
+    },
+  })
+  const modalHandler = async selected => {
+    if (loggedInUser.email === item.email) {
+      toast.error('Action Not Allowed')
+      return setIsOPen(false)
+    }
+  
+  
+    const userRole = {
+      role: selected,
+      status: 'Verified',
+    }
+
+    try {
+      await mutateAsync(userRole)
+    } catch (err) {
+      console.log(err)
+      toast.error(err.message)
+    }
+  
+  }
   return (
-    <tr>
+    <tr className="font-Lato">
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
         <p className='text-gray-900 whitespace-no-wrap'>{item?.email}</p>
       </td>
@@ -25,14 +69,15 @@ const UserTable = ({ item }) => {
       </td> 
 
       <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
-        <span className='relative cursor-pointer inline-block px-3 py-1 font-semibold text-green-900 leading-tight'>
+        <button onClick={()=>setIsOPen(true)} className='relative cursor-pointer inline-block px-3 py-1 font-semibold bg-[#ff9a3c] rounded-2xl p-3 text-white leading-tight'>
           <span
             aria-hidden='true'
-            className='absolute inset-0 bg-green-200 opacity-50 rounded-full'
+            className='absolute inset-0   rounded-full'
           ></span>
-          <span className='relative'>Update Role</span>
-        </span>
+          <span className='relative text-white'>Make Admin</span>
+        </button>
         {/* Update User Modal */}
+        <UpdateUserModal isOpen={isOpen} setIsOpen={setIsOPen}  modalHandler={modalHandler} item={item} />
       </td>
     </tr>
   )
