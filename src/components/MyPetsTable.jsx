@@ -47,25 +47,25 @@ const MyPetsTable = ({ item, index }) => {
                     </colgroup>
                     <tbody className="border-b dark:bg-gray-50 dark:border-gray-300">
                         <tr>
-                            <td className="px-3 py-2 text-[12px] lg:text-[14px] font-medium dark:text-gray-600">
-                                <p className="text-center">{index}</p>
+                        <td className='px-5 py-5 border-b border-gray-200 bg-white text-sm'>
+                                <p className=" text-gray-900 whitespace-no-wrap'">{index}</p>
                             </td>
-                            <td className="px-3 py-2 text-[12px] lg:text-[14px] font-medium dark:text-gray-600">
-                                <p className="text-center">{item.petname}</p>
+                            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <p className="text-gray-900 whitespace-no-wrap'">{item.petname}</p>
                             </td>
-                            <td className="px-3 py-2 text-[12px] lg:text-[14px] font-medium dark:text-gray-600">
-                                <p className="text-center">{item.category}</p>
+                            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <p className="text-gray-900 whitespace-no-wrap'">{item.category}</p>
                             </td>
-                            <td className="px-3 py-2 text-[12px] lg:text-[14px] font-medium dark:text-gray-600">
-                                <p className="text-center">{item.status}</p>
+                            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                                <p className="text-gray-900 whitespace-no-wrap'">{item.status}</p>
                             </td>
-                            <td className="px-3 py-2 text-[12px] lg:text-[14px] font-medium dark:text-gray-600">
+                            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                 <Link to={`/dashboard/updatepet/${item._id}`} className="btn bg-[#155263] text-[16px] lg:font-medium font-normal text-white">Update</Link>
                             </td>
-                            <td className="px-3 py-2 text-[12px] lg:text-[14px] font-medium dark:text-gray-600">
+                            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                 <button onClick={() => handleDelete(item._id)} className="btn bg-[#155263] text-[16px] lg:font-medium font-normal text-white">Delete</button>
                             </td>
-                            <td className="px-3 py-2 text-[12px] lg:text-[14px] font-medium dark:text-gray-600">
+                            <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                                 <button className="btn bg-[#155263] text-[16px] lg:font-medium font-normal text-white">Adopted</button>
                             </td>
                         </tr>

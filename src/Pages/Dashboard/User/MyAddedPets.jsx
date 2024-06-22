@@ -33,13 +33,34 @@ const MyAddedPets = () => {
                         </colgroup>
                          <thead>
                             <tr className="dark:bg-gray-300 text-[#5c715e] font-Lato">
-                            <th className=" px-3 py-2 w-1/7 text-[16px] lg:text-xl font-medium">Serial NO.</th>
-                                <th className=" px-3 py-2 w-1/7 text-[16px] lg:text-xl font-medium">Pet Name</th>
-                                <th className=" px-3 py-2 w-1/7 text-[16px] lg:text-xl font-medium">Category</th>
-                                <th className=" px-3 py-2 w-1/7 text-[16px] lg:text-xl font-medium">Status</th>
-                                <th className=" px-3 py-2 w-1/7 text-[16px] lg:text-xl font-medium">Update</th>
-                                <th className=" px-3 py-2 w-1/7 text-[16px] lg:text-xl font-medium">Delete</th>
-                                <th className=" px-3 py-2 w-1/7 text-[16px] lg:text-xl font-medium">Adopted</th>
+                            <th
+                      scope='col'
+                      className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
+                    >Serial NO.</th>
+                                 <th
+                      scope='col'
+                      className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
+                    >Pet Name</th>
+                                 <th
+                      scope='col'
+                      className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
+                    >Category</th>
+                                 <th
+                      scope='col'
+                      className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
+                    >Status</th>
+                                 <th
+                      scope='col'
+                      className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
+                    >Update</th>
+                                 <th
+                      scope='col'
+                      className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
+                    >Delete</th>
+                                 <th
+                      scope='col'
+                      className='px-5 py-3 bg-white  border-b border-gray-200 text-gray-800  text-left text-sm uppercase font-normal'
+                    >Adopted</th>
                                 
                                
                             </tr>
