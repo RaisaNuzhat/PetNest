@@ -4,8 +4,11 @@ import { Helmet } from "react-helmet";
 
 import {  useLoaderData } from "react-router-dom";
 import DonateModal from '../components/modal/DonateModal';
+import useAuth from '../hooks/useAuth';
 const ViewDonationDetails = () => {
     const viewDonation = useLoaderData();
+    const {user} = useAuth()
+    console.log(user)
     const { petname,image, maxamount, description,shortnote} = viewDonation
     let [isOpen, setIsOpen] = useState(false)
     const closeModal =()=>
@@ -37,7 +40,19 @@ const ViewDonationDetails = () => {
                     
                     <p className="my-3   lg:text-xl text-[16px] sm:mb-12 xl:max-w-3xl dark:text-gray-50">Note: {shortnote}</p>
                     <button onClick={() => setIsOpen(true)} className="btn bg-[#f1b963] text-white text-xl border-none">Donate Now</button>
-                    <DonateModal isOpen={isOpen} closeModal={closeModal}/>
+                    <DonateModal 
+                    isOpen={isOpen} 
+                    closeModal={closeModal}
+                    donationInfo={{
+                        
+                        maxamount: maxamount,
+                        donator: {
+                          donatorname: user?.displayName,
+                          donatoremail: user?.email,
+                          image: user?.photoURL,
+                        },
+                      }}
+                    />
                 </div>
             </section>
         </div>

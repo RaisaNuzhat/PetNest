@@ -11,6 +11,11 @@ const AdminMenu = () => {
         <div>
              {/* All Users */}
              <MenuItem label='All Users' address='allusers' icon={IoGitPullRequestSharp} />
+             {/* All Pets */}
+             <MenuItem label='All Pets' address='allpets' icon={IoGitPullRequestSharp} />
+                          {/* All Donations */}
+                          <MenuItem label='All Donation Campaigns' address='alldonations' icon={IoGitPullRequestSharp} />
+             {/* add pet */}
              <MenuItem label='Add A Pet' address='addapet' icon={RiHeartAdd2Fill} />
             {/* My added pets */}
             <MenuItem label='My Added Pets' address='myaddedpets' icon={BsFillHouseAddFill} />

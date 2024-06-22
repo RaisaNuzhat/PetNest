@@ -17,6 +17,9 @@ import EditDonation from '../Pages/Dashboard/User/EditDonation';
 import ViewDonationDetails from '../Pages/ViewDonationDetails';
 import AllUsers from '../Pages/Dashboard/Admin/AllUsers';
 import Privateroute from '../components/Privateroute';
+import AllPets from '../Pages/Dashboard/Admin/AllPets';
+import AllDonations from '../Pages/Dashboard/Admin/AllDonations';
+import MyDonations from '../Pages/Dashboard/User/MyDonations';
 
 
 export const router = createBrowserRouter([
@@ -76,6 +79,18 @@ export const router = createBrowserRouter([
           {
             path:'allusers',
             element:<AllUsers/>
+          },
+          {
+            path:'allpets',
+            element:<AllPets/>
+          },
+          {
+            path:'alldonations',
+            element:<AllDonations/>
+          },
+          {
+            path:'mydonations',
+            element:<MyDonations/>
           },
          {
             path: 'myaddedpets',
