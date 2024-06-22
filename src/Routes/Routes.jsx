@@ -15,6 +15,8 @@ import MyDonationCampaigns from '../Pages/Dashboard/User/MyDonationCampaigns';
 import ErrorPage from '../components/ErrorPage';
 import EditDonation from '../Pages/Dashboard/User/EditDonation';
 import ViewDonationDetails from '../Pages/ViewDonationDetails';
+import AllUsers from '../Pages/Dashboard/Admin/AllUsers';
+import Privateroute from '../components/Privateroute';
 
 
 export const router = createBrowserRouter([
@@ -46,12 +48,12 @@ export const router = createBrowserRouter([
 
             path: '/viewdetails/:id',
             loader:({params}) => fetch(`${import.meta.env.VITE_API_URL}/pets/${params.id}`),
-            element: <ViewDetails/>,
+            element: <Privateroute><ViewDetails/></Privateroute>,
           },
          {
           path: 'viewdonationdetails/:id',
           loader:({params}) => fetch(`${import.meta.env.VITE_API_URL}/donations/${params.id}`),
-          element:<ViewDonationDetails/>,
+          element:<Privateroute><ViewDonationDetails/></Privateroute>,
          },
         
          
@@ -70,6 +72,10 @@ export const router = createBrowserRouter([
           //index:true,
             path: 'addapet',
             element: <AddAPet/>,
+          },
+          {
+            path:'allusers',
+            element:<AllUsers/>
           },
          {
             path: 'myaddedpets',
