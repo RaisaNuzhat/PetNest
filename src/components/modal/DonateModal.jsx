@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 
-import PropTypes from 'prop-types'
+
 import {
   Dialog,
   Transition,
@@ -73,7 +73,7 @@ const DonateModal = ({ closeModal, isOpen,donationInfo }) => {
                 <Elements stripe={stripePromise}>
                   {/* checkout form */}
                   * <CheckoutForm
-                    //bookingInfo=
+                    donationInfo={donationInfo}
                     closeModal={closeModal}
                     //refetch={refetch}
                   /> 
@@ -87,11 +87,6 @@ const DonateModal = ({ closeModal, isOpen,donationInfo }) => {
   )
 }
 
-DonateModal.propTypes = {
-  bookingInfo: PropTypes.object,
-  closeModal: PropTypes.func,
-  isOpen: PropTypes.bool,
-  refetch: PropTypes.func,
-}
+
 
 export default DonateModal

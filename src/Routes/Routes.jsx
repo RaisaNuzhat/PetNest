@@ -20,6 +20,7 @@ import Privateroute from '../components/Privateroute';
 import AllPets from '../Pages/Dashboard/Admin/AllPets';
 import AllDonations from '../Pages/Dashboard/Admin/AllDonations';
 import MyDonations from '../Pages/Dashboard/User/MyDonations';
+import AdoptionRequests from '../Pages/Dashboard/User/AdoptionRequests';
 
 
 export const router = createBrowserRouter([
@@ -83,6 +84,10 @@ export const router = createBrowserRouter([
           {
             path:'allpets',
             element:<AllPets/>
+          },
+          {
+            path:'adoptionreq',
+            element:<AdoptionRequests/>
           },
           {
             path:'alldonations',

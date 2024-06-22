@@ -13,7 +13,7 @@ const UserMenu = () => {
             <MenuItem label='My Added Pets' address='myaddedpets' icon={BsFillHouseAddFill} />
          
             {/* adoption requests */}
-            <MenuItem label='Adoption Requests' address='doptionrequest' icon={IoGitPullRequestSharp} />
+            <MenuItem label='Adoption Requests' address='adoptionreq' icon={IoGitPullRequestSharp} />
 
             {/* create donation */}
             <MenuItem label='Create Donation Campaign' address='createdonationcamp' icon={IoCreateSharp} />

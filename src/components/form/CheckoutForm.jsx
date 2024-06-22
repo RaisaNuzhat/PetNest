@@ -18,16 +18,21 @@ const CheckoutForm = ({ closeModal, donationInfo }) => {
   const [processing, setProcessing] = useState(false)
 
   useEffect(() => {
+    console.log(donationInfo)
     // fetch client secret
-    if (donationInfo?.price && donationInfo?.price > 1) {
-      getClientSecret({ price: donationInfo?.price })
+    if (donationInfo?.maxamount && donationInfo?.maxamount > 1) {
+      getClientSecret({ maxamount: donationInfo?.maxamount })
+      
+      
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [donationInfo?.price])
+  }, [donationInfo?.maxamount])
 
   //   get clientSecret
-  const getClientSecret = async price => {
-    const { data } = await axiosSecure.post(`/create-payment-intent`, price)
+  const getClientSecret = async maxamount => {
+    console.log(maxamount)
+    const { data } = await axiosSecure.post(`/create-payment-intent`, maxamount)
+
     console.log('clientSecret from server--->', data)
     setClientSecret(data.clientSecret)
   }
@@ -148,7 +153,7 @@ const CheckoutForm = ({ closeModal, donationInfo }) => {
             {processing ? (
               <ImSpinner9 className='animate-spin m-auto' size={24} />
             ) : (
-              `Pay ${donationInfo?.price}`
+              `Pay ${donationInfo?.maxamount}`
             )}
           </button>
           <button
