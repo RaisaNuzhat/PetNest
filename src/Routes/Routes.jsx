@@ -75,49 +75,94 @@ export const router = createBrowserRouter([
         {
           //index:true,
             path: 'addapet',
-            element: <AddAPet/>,
+            element: (
+              <Privateroute>
+                <AddAPet/>,
+              </Privateroute>
+            )
           },
           {
             path:'allusers',
-            element:<AllUsers/>
+            element:(
+              <Privateroute>
+                <AllUsers/>
+              </Privateroute>
+            )
           },
           {
             path:'allpets',
-            element:<AllPets/>
+            element:(
+              <Privateroute>
+                <AllPets/>
+              </Privateroute>
+            )
           },
           {
             path:'adoptionreq',
-            element:<AdoptionRequests/>
+            element:(
+              <Privateroute>
+                <AdoptionRequests/>
+              </Privateroute>
+            )
           },
           {
             path:'alldonations',
-            element:<AllDonations/>
+            element:(<Privateroute>
+              <AllDonations/>
+            </Privateroute>)
           },
           {
             path:'mydonations',
-            element:<MyDonations/>
+            element:
+            (
+              <Privateroute>
+                <MyDonations/>
+              </Privateroute>
+            )
           },
          {
             path: 'myaddedpets',
-             element: <MyAddedPets/>,
+             element: (
+              <Privateroute>
+                <MyAddedPets/>,
+              </Privateroute>
+             )
            },
            {
             path: 'createdonationcamp',
-             element: <CreateDonationCamp/>,
+             element: 
+             (
+              <Privateroute>
+                <CreateDonationCamp/>,
+              </Privateroute>
+             )
            },
            {
             path: 'mydonationcamp',
-             element: <MyDonationCampaigns/>,
+             element: 
+             (
+              <Privateroute>
+                <MyDonationCampaigns/>,
+              </Privateroute>
+             )
            },
            {
             path: 'updatepet/:id',
             loader:({params}) => fetch(`${import.meta.env.VITE_API_URL}/pets/${params.id}`),
-             element: <UpdatePet/>,
+             element: (
+              <Privateroute>
+                <UpdatePet/>,
+              </Privateroute>
+             )
            },
            {
             path: 'editdonation/:id',
             loader:({params}) => fetch(`${import.meta.env.VITE_API_URL}/donations/${params.id}`),
-             element: <EditDonation/>,
+             element: (
+              <Privateroute>
+                <EditDonation/>,
+              </Privateroute>
+             )
            },
     ]
   },
