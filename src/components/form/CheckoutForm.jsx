@@ -104,10 +104,9 @@ const CheckoutForm = ({ closeModal, donationInfo }) => {
       console.log(paymentInfo)
       try {
         // 2. save payment info in booking collection (db)
-        const { data } = await axiosSecure.post('/mydonation', paymentInfo)
+        const { data } = await axiosSecure.post('/mydonations', paymentInfo)
         console.log(data)
 
-        // 3. change room status to booked in db
        
 
         // update ui
