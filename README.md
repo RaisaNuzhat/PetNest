@@ -32,16 +32,8 @@ PetNest is a web application that allows users to add and manage pet adoption po
 - **User Role Management:** Admins can promote a user to admin or demote an admin to a regular user.
 - **Post Management:** Admins can view and manage all pet adoption posts and donation campaigns.
 
+- **live link: https://th-assignment-a87d3.web.app**
 
 
 
 
-
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
